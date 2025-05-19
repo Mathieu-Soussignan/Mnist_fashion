@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
+
 def flatten_data(X):
     """
     Aplatit les données d'images en vecteurs pour les modèles de ML classique.
@@ -15,6 +16,7 @@ def flatten_data(X):
     if len(X.shape) != 3:
         raise ValueError("Les données doivent avoir trois dimensions : (échantillons, hauteur, largeur).")
     return X.reshape(X.shape[0], -1)
+
 
 def evaluate_model(model, X_test, y_test):
     """
@@ -31,6 +33,7 @@ def evaluate_model(model, X_test, y_test):
     y_pred = model.predict(X_test)
     print("Accuracy:", accuracy_score(y_test, y_pred))
     print("\nClassification Report:\n", classification_report(y_test, y_pred))
+
 
 def plot_confusion_matrix(y_true, y_pred, class_names):
     """
@@ -57,7 +60,7 @@ def plot_confusion_matrix(y_true, y_pred, class_names):
         plt.text(j, i, format(cm[i, j], 'd'),
                  horizontalalignment="center",
                  color="white" if cm[i, j] > thresh else "black")
-    
+
     plt.xlabel('Prédiction')
     plt.ylabel('Vraie valeur')
     plt.tight_layout()
